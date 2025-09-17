@@ -101,18 +101,18 @@ class Rss < Aggregator
     end
   end
 
-def force_utf8(obj)
-  case obj
-  when String
-    obj.force_encoding('UTF-8')
-  when Array
-    obj.map { |e| force_utf8(e) }
-  when Hash
-    obj.transform_values { |v| force_utf8(v) }
-  else
-    obj
+  def force_utf8(obj)
+    case obj
+    when String
+      obj.force_encoding('UTF-8')
+    when Array
+      obj.map { |e| force_utf8(e) }
+    when Hash
+      obj.transform_values { |v| force_utf8(v) }
+    else
+      obj
+    end
   end
-end
 
   ## Use simple-rss to get the latest feed data for
   #  the current feed URI/source
