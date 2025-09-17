@@ -5,7 +5,6 @@ ruby '>= 2.5.0'
 
 # required
 gem 'htmlentities'
-gem 'httparty'
 gem 'launchy'
 gem 'os'
 gem 'simple-rss'

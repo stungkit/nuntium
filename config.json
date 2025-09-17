@@ -7,38 +7,33 @@
             ]
         },
         "rss": {
-            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by a WIP RSS Feed 'generator'.",
+            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by a public RSSHub instance. Note that RSSHub is relatively slow. Key is the presentational string, value is the RSSHub endpoint + route",
             "feeds": [
                 { "Hacker News": "https://news.ycombinator.com/rss" },
                 { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
-                { "Dev.to": "https://dev.to/feed/" },
                 { "NPR": "https://www.npr.org/rss/rss.php?id=1001" },
                 { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" },
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
                 { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" },
 		        { "Kotaku": "https://kotaku.com/rss" },
-                { "Game Informer": "https://www.gameinformer.com/rss.xml" },
-                { "CSS Tricks": "https://css-tricks.com/feed/" },
                 { "Aeon": "https://aeon.co/feed.rss" },
-                { "Polygon": "https://www.polygon.com/rss/index.xml" }
+                { "Polygon": "https://www.polygon.com/rss/index.xml" },
+                { "Wired" : "https://www.wired.com/feed/rss" }
             ],
             "i_feeds": [
+                { "The Verge" : "https://rsshub.rssforever.com/theverge" }
             ]
         },
         "stock": {
             "_NOTE": "This feature only supports up to 10 stock symbols right now, sorry. But symbols is an array of strings that are stock symbols - it is a WIP",
             "symbols": [
                 "AMZN",
-                "AAPL", 
-                "MSFT", 
-                "GOOGL",
-                "NVDA",
-		        "ATVI"
+                "MSFT"
             ]
         }
     },
     "displays" : {
-        "_NOTE": "stream_format is used to govern the order of how data is streamed. Below, you get 1 rss feed, followed by 3 stocks, then it repeats.",
-        "stream_format": ["rss", "stock", "stock", "stock"]
+        "_NOTE": "stream_format is used to govern the order of how data is streamed. Below, you get 1 rss feed, followed by 2 stocks, then it repeats.",
+        "stream_format": ["rss", "stock", "stock"]
     }
 }

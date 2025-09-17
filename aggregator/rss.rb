@@ -6,7 +6,6 @@ require 'htmlentities'
 require 'launchy'
 require 'open-uri'
 require 'simple-rss'
-require 'httparty'
 
 ## Aggregator class for RSS Feeds, their content, etc.
 class Rss < Aggregator
@@ -55,7 +54,7 @@ class Rss < Aggregator
 
   # TODO, implement
   def append_ifeeds(i_feeds)
-    # @feeds.concat(i_feeds)
+    @feeds.concat(i_feeds)
   end
 
   # Hit the feed for each feed URI at instantiation instead of
@@ -102,6 +101,19 @@ class Rss < Aggregator
     end
   end
 
+def force_utf8(obj)
+  case obj
+  when String
+    obj.force_encoding('UTF-8')
+  when Array
+    obj.map { |e| force_utf8(e) }
+  when Hash
+    obj.transform_values { |v| force_utf8(v) }
+  else
+    obj
+  end
+end
+
   ## Use simple-rss to get the latest feed data for
   #  the current feed URI/source
   def fetch_feed
@@ -119,7 +131,7 @@ class Rss < Aggregator
     # I know there's probably a better way to do this...
     # but I can't remember if with_indifferent_access is
     # a rails thing...
-    @cache[@current_feed.keys.first] = JSON.parse(document.items.to_json)
+    @cache[@current_feed.keys.first] = JSON.parse(force_utf8(document.items).to_json)
   end
 
   ### TODO: probably candidate for pulling out into method on Aggregator
